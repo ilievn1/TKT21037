@@ -23,6 +23,9 @@ services:
 
   backend:
     image: srv
+    depends_on:
+      - db
+      - redis
     ports:
       - 8080:8080
     environment:
@@ -32,3 +35,14 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DATABASE=postgres
     container_name: backend
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+        - 80:80
+    depends_on:
+        - backend
+        - frontend
+    container_name: nginx
