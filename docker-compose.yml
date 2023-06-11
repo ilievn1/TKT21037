@@ -9,9 +9,11 @@ services:
   db:
     image: postgres:13.2-alpine
     restart: always
-    container_name: db
+    volumes:
+      - ./database:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=postgres
+    container_name: db
 
   frontend:
     image: frn
