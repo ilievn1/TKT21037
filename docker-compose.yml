@@ -1,6 +1,10 @@
 version: '3.8'
 
 services:
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+
   frontend:
     image: frn
     ports:
@@ -10,3 +14,5 @@ services:
     image: srv
     ports:
       - 8080:8080
+    environment:
+      - REDIS_HOST=redis
