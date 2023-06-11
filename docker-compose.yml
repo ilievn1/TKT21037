@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+
+    web-service-txt-logs:
+      image: devopsdockeruh/simple-web-service
+      volumes:
+        - "./txtlogs.log:/usr/src/app/text.log"
+      container_name: web-service
